@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 10.2.0
+## 10.2.0 - 2018-01-01
 ### Added
 - Support or `url_parameters`: https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md#base-uri-and-base-uri-parameters
 Defaults will be used from RAML spec, if missing - exception will be thrown. You should pass required url parameters ar `options`
@@ -15,7 +15,7 @@ Defaults will be used from RAML spec, if missing - exception will be thrown. You
 
 ## 10.1.0
 ### Added
-- JS and PHP clients now support scalar items type in Results. 
+- JS and PHP clients now support scalar items type in Results.
 
 ## 10.0.1
 ### Added
@@ -43,7 +43,7 @@ Be aware that you need `paysera/lib-rest-client-common 2.0` to use this method.
 
 ## 8.0.0
 ### Added
-- Generated Javascript clients for `Money` type are using the `@paysera/money` library now. 
+- Generated Javascript clients for `Money` type are using the `@paysera/money` library now.
 
 ## 7.0.2
 ### Fixed
@@ -56,7 +56,7 @@ seems to be invalid path to Sqlite database, so it is copied to temp dir.
 
 ## 7.0.0
 ### Fixed
-- Properly generates return types and return values of arrays. Previously instead of array, `null` was returned. 
+- Properly generates return types and return values of arrays. Previously instead of array, `null` was returned.
 ### Changed
 - Changes made to how singular/plural method names are resolved. Now if response is iterable and request method is `GET` - it should be in plural.
 - `PHP code generator` and `JS code generator` now expects 3 arguments:
@@ -77,7 +77,7 @@ but instead imported from configured library.
 ### Changed
 - Inheritance in `Entities` and `Filters`.
     * Generated `Entities` will extend class described in it's RAML `type` facet.
-    * Generated `Filters` will extend **first class** in it's RAML `is` facet. 
+    * Generated `Filters` will extend **first class** in it's RAML `is` facet.
     If no `is` facets provided, generated `Filter` will extend base `Entity`.
 
 ## 4.1.0

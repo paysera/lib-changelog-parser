@@ -21,12 +21,16 @@ class ChangelogParser
 
     public function parse(string $contents): Changelog
     {
+        $trimmed = trim($contents);
         $changelog = new Changelog();
+
         $changelog
-            ->setHeader(trim($this->extractor->extractHeader($contents)))
+            ->setHeader(trim($this->extractor->extractHeader($trimmed)))
         ;
 
-        foreach ($this->parseVersions($contents) as $versionInfo) {
+        $partial = substr($contents, strlen($changelog->getHeader()));
+
+        foreach ($this->parseVersions($partial) as $versionInfo) {
             $changelog->addVersion($versionInfo);
         }
 

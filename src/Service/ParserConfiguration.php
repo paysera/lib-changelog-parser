@@ -7,12 +7,14 @@ class ParserConfiguration
 {
     private $includeHeader;
     private $header;
-    private $versionRegex;
+    private $versionBlockRegex;
+    private $versionNumberRegex;
     private $dateRegex;
     private $headerRegex;
     private $dateFormat;
     private $changeRegex;
     private $detailsRegex;
+    private $versionPattern;
 
     public function __construct()
     {
@@ -26,12 +28,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 HEADER;
 
-        $this->versionRegex = '\[?(?:(?:\d+\.\d+\.\d+)|Unreleased)\]?';
+        $this->versionNumberRegex = 'Unreleased|(?:\d+\.\d+\.\d+)';
+        $this->versionBlockRegex = '\[?%s\]?';
         $this->headerRegex = '^(#\s?Changelog(?:.|\n)*?)';
         $this->dateRegex = '\d{4}-\d{2}-\d{2}';
         $this->dateFormat = 'Y-m-d';
         $this->changeRegex = '\w+';
         $this->detailsRegex = '';
+        $this->versionPattern = '%version%';
     }
 
     public function includeHeader(): bool
@@ -56,14 +60,14 @@ HEADER;
         return $this;
     }
 
-    public function getVersionRegex(): string
+    public function getVersionBlockRegex(): string
     {
-        return $this->versionRegex;
+        return $this->versionBlockRegex;
     }
 
-    public function setVersionRegex(string $versionRegex): self
+    public function setVersionBlockRegex(string $versionBlockRegex): self
     {
-        $this->versionRegex = $versionRegex;
+        $this->versionBlockRegex = $versionBlockRegex;
         return $this;
     }
 
@@ -119,6 +123,28 @@ HEADER;
     public function setDetailsRegex(string $detailsRegex): self
     {
         $this->detailsRegex = $detailsRegex;
+        return $this;
+    }
+
+    public function getVersionPattern(): string
+    {
+        return $this->versionPattern;
+    }
+
+    public function setVersionPattern(string $versionPattern): self
+    {
+        $this->versionPattern = $versionPattern;
+        return $this;
+    }
+
+    public function getVersionNumberRegex(): string
+    {
+        return $this->versionNumberRegex;
+    }
+
+    public function setVersionNumberRegex(string $versionNumberRegex): self
+    {
+        $this->versionNumberRegex = $versionNumberRegex;
         return $this;
     }
 }

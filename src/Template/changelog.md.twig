@@ -1,0 +1,14 @@
+{% if config.includeHeader and config.header %}
+{{ changelog.header }}
+
+{% endif %}
+{% for versionInfo in changelog.versions %}
+## {{ config.versionPattern|replace({'%version%': versionInfo.version}) }}{{ versionInfo.date ? ' - ' ~ versionInfo.date|date(config.dateFormat) }}
+{% for changeEntry in versionInfo.changeEntries %}
+### {{ changeEntry.changeType }}
+{% for changeDetails in changeEntry.changeDetails %}
+- {{ changeDetails.description|raw }}
+{% endfor %}
+{% endfor %}
+
+{% endfor %}

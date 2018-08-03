@@ -1,4 +1,4 @@
-### lib-changelog-parser
+### lib-changelog-parser [![Build Status](https://travis-ci.org/paysera/lib-changelog-parser.svg?branch=master)](https://travis-ci.org/paysera/lib-changelog-parser)
 
 Parses and dumps `CHANGELOG.md` file written according to https://keepachangelog.com/en/1.0.0/ specifications for programmatic manipulation.
 

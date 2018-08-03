@@ -69,7 +69,7 @@ class ValueExtractor
         $value = $this->extractSingleValue(
             $contents,
             sprintf(
-                '!%s.+(%s)$!i',
+                '!%s.+(%s)$!im',
                 self::VERSION_LINE_PREFIX,
                 $this->config->getDateRegex()
             )
@@ -103,9 +103,9 @@ class ValueExtractor
         return $this->extractSingleValue(
             $contents,
             sprintf(
-                '!%s(%s)!i',
+                '!%s%s!i',
                 self::VERSION_LINE_PREFIX,
-                $this->config->getVersionRegex()
+                sprintf($this->config->getVersionBlockRegex(), '(' . $this->config->getVersionNumberRegex() . ')')
             )
         );
     }
@@ -113,7 +113,7 @@ class ValueExtractor
     private function extractSingleValue(string $contents, string $regex)
     {
         if (preg_match($regex, $contents,$matches) === 1) {
-            return $matches[1];
+            return trim(isset($matches[2]) ? $matches[2] : $matches[1]);
         }
 
         return null;
@@ -160,9 +160,9 @@ class ValueExtractor
     private function getVersionBound(): string
     {
         return sprintf(
-            '%s(?:%s)',
+            '%s%s',
             self::VERSION_LINE_PREFIX,
-            $this->config->getVersionRegex()
+            sprintf($this->config->getVersionBlockRegex(), '(?:' . $this->config->getVersionNumberRegex() . ')')
         );
     }
 }
