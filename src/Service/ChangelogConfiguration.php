@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Paysera\Component\ChangelogParser\Service;
 
-class ParserConfiguration
+class ChangelogConfiguration
 {
     private $includeHeader;
     private $header;

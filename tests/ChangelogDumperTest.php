@@ -5,7 +5,7 @@ namespace Paysera\Component\ChangelogParser\Tests;
 
 use Paysera\Component\ChangelogParser\Service\ChangelogDumper;
 use Paysera\Component\ChangelogParser\Service\ChangelogParser;
-use Paysera\Component\ChangelogParser\Service\ParserConfiguration;
+use Paysera\Component\ChangelogParser\Service\ChangelogConfiguration;
 use Paysera\Component\ChangelogParser\Service\ValueExtractor;
 use PHPUnit\Framework\TestCase;
 use Twig_Environment;
@@ -26,7 +26,7 @@ class ChangelogDumperTest extends TestCase
     protected function setUp()
     {
         $this->dumper = new ChangelogDumper(
-            new ParserConfiguration(),
+            new ChangelogConfiguration(),
             new Twig_Environment(
                 new Twig_Loader_Array([
                     'changelog.md' => file_get_contents(__DIR__ . '/../src/Template/changelog.md.twig'),
@@ -35,7 +35,7 @@ class ChangelogDumperTest extends TestCase
             'changelog.md'
         );
 
-        $this->parser = new ChangelogParser(new ValueExtractor(new ParserConfiguration()));
+        $this->parser = new ChangelogParser(new ValueExtractor(new ChangelogConfiguration()));
     }
 
     /**

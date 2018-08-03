@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Paysera\Component\ChangelogParser\Tests;
 
 use Paysera\Component\ChangelogParser\Service\ChangelogParser;
-use Paysera\Component\ChangelogParser\Service\ParserConfiguration;
+use Paysera\Component\ChangelogParser\Service\ChangelogConfiguration;
 use Paysera\Component\ChangelogParser\Service\ValueExtractor;
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +17,7 @@ class ChangelogParserTest extends TestCase
 
     protected function setUp()
     {
-        $this->parser = new ChangelogParser(new ValueExtractor(new ParserConfiguration()));
+        $this->parser = new ChangelogParser(new ValueExtractor(new ChangelogConfiguration()));
     }
 
     /**

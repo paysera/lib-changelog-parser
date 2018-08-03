@@ -13,7 +13,7 @@ class ChangelogDumper
     private $templateName;
 
     public function __construct(
-        ParserConfiguration $config,
+        ChangelogConfiguration $config,
         Twig_Environment $twig,
         string $templateName
     ) {

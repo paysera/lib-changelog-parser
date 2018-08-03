@@ -14,7 +14,7 @@ class ValueExtractor
 
     private $config;
 
-    public function __construct(ParserConfiguration $config)
+    public function __construct(ChangelogConfiguration $config)
     {
         $this->config = $config;
     }

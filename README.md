@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 You can now parse it:
 ```php
-$parser = new ChangelogParser(new ValueExtractor(new ParserConfiguration()));
+$parser = new ChangelogParser(new ValueExtractor(new ChangelogConfiguration()));
 
 $changelog = $parser->parse(file_get_contents($pathToChangelog));
 print_r($changelog);
@@ -72,4 +72,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
                     [changeDetails] => Array
                         [0] => ChangeDetails Object
                             [description] => Changed how things are parsed in parser.
+```
+## Dumping
+You can dump `Changelog` object back to markdown using `ChangelogDumper` and `twig` template:
+```php
+$dumper = new ChangelogDumper(
+            new ChangelogConfiguration(),
+            new Twig_Environment(
+                new Twig_Loader_Array([
+                    'changelog.md' => file_get_contents(__DIR__ . '/../src/Template/changelog.md.twig'),
+                ])
+            ),
+            'changelog.md'
+        );
+
+$contents = $dumper->dump($changelog);
+print_r($contents)
+```
+You should get formatted markdown contents according to `ChangelogConfiguration`:
+```markdown
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## 1.0.1
+### Added
+- `php-generator:symfony-bundle` added to `phar`
+
+## 1.0.0
+### Added
+- support of something.
+- another feature added.
+### Removed
+- In particular class some method was removed.
+### Changed
+- Changed how things are parsed in parser.
 ```
