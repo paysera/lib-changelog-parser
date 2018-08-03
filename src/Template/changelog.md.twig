@@ -1,5 +1,8 @@
-{% if config.includeHeader and config.header %}
+{% if changelog.header %}
 {{ changelog.header }}
+
+{% elseif config.includeHeader and config.header %}
+{{ config.header }}
 
 {% endif %}
 {% for versionInfo in changelog.versions %}

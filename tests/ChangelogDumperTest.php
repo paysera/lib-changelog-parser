@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Paysera\Component\ChangelogParser\Tests;
 
+use Paysera\Component\ChangelogParser\Entity\Changelog;
 use Paysera\Component\ChangelogParser\Service\ChangelogDumper;
 use Paysera\Component\ChangelogParser\Service\ChangelogParser;
 use Paysera\Component\ChangelogParser\Service\ChangelogConfiguration;
@@ -49,6 +50,18 @@ class ChangelogDumperTest extends TestCase
         $output = $this->dumper->dump($changelog);
 
         $this->assertEquals($contents, $output);
+    }
+
+    public function testEmptyChangelogCreatedWithHeader()
+    {
+        $config = new ChangelogConfiguration();
+
+        $output = (new ChangelogDumper($config))->dump(new Changelog());
+        $this->assertSame($config->getHeader(), $output);
+
+        $config->setIncludeHeader(false);
+        $output = (new ChangelogDumper($config))->dump(new Changelog());
+        $this->assertSame("\n", $output);
     }
 
     public function dataProviderTestDump()
