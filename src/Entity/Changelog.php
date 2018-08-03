@@ -56,4 +56,10 @@ class Changelog
         $this->versions[] = $version;
         return $this;
     }
+
+    public function unshiftVersion(VersionInfo $version): self
+    {
+        array_unshift($this->versions, $version);
+        return $this;
+    }
 }
