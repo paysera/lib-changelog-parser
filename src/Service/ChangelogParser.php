@@ -48,7 +48,7 @@ class ChangelogParser
         }
     }
 
-    private function parseVersionInfo(string $block): VersionInfo
+    public function parseVersionInfo(string $block): VersionInfo
     {
         $versionInfo = new VersionInfo();
         $version = $this->extractor->extractVersion($block);
@@ -65,7 +65,7 @@ class ChangelogParser
         return $versionInfo;
     }
 
-    private function parseChangeEntry(string $block): ChangeEntry
+    public function parseChangeEntry(string $block): ChangeEntry
     {
         $entry = new ChangeEntry();
         $changeType = $this->extractor->extractChangeType($block);
